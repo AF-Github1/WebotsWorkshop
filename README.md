@@ -1,7 +1,10 @@
 # WebotsWorkshop
 
+Para terça feira
 #Explicar como adicionar e criar robôs
 #Explicar como criar e manipular camera e mundo
+#Explicar definições
+# Explicar como ir buscar parte dos robo
 
 
 
@@ -25,7 +28,7 @@ check ubuntu and redhat specifics including path..
 MAKING A NEW WORLD
 
 explain arena
-2eplain new controller wizard..
+explain NUE coordinates
 
 To note: Some older videos and posts adressing how Webots work are based on older versions. More recent versions put the controller wizard within the file tab, so if you are not finding the controller wizard tab, it's because you are in a more recent version of Webots and must instead create a new controller through the file tab.
 
@@ -37,7 +40,9 @@ node, proto node, adding removing, external photo...
 
 E-PUCK SPECIFICS
 
-Explain documentation...how to find parts you want...how to call them...
+https://cyberbotics.com/doc/guide/epuck
+
+This part of the documentation links to the specification of the e-puck. It includes where the part
 
 showing engineering doc might be a bit much, but explain what it is, as it explains where parts are located
 
