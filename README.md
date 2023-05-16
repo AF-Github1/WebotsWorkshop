@@ -1,25 +1,33 @@
 # WebotsWorkshop
 
+#Explicar como adicionar e criar robôs
+#Explicar como criar e manipular camera e mundo
+
+
+
+
+
 
 This repository contains the instructions and the code for the Webots workshop done in 31/05/2023 in the school of (?).
 
 It is meant to serve as a supporting document.
 
-In the case that someone that has already have significant experience with Webots comes here, this repository will be mostly useless to you, as this is only meant as an introduction.
+In the case that someone that already has significant experience with Webots comes here, this repository will be mostly useless, as this is only meant as an introduction.
 
+INSTALLATION
 
+PYTHON https://www.python.org/downloads/windows/
+WEBOTS https://cyberbotics.com/instruction 
 
-INSTALLATION.......
-
-python link here..
-webots link here..
-instruction for path here..
+Path instructions here...
 check ubuntu and redhat specifics including path..
 
-MAKING A NEW WORLD.....
+MAKING A NEW WORLD
 
-explain arena....
+explain arena
 2eplain new controller wizard..
+
+To note: Some older videos and posts adressing how Webots work are based on older versions. More recent versions put the controller wizard within the file tab, so if you are not finding the controller wizard tab, it's because you are in a more recent version of Webots and must instead create a new controller through the file tab.
 
 DEFINITIONS
 
