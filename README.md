@@ -1,5 +1,3 @@
-
-
 WebotsWorkshop
 
 This repository contains the instructions and the code for the Webots workshop done in 31/05/2023 and 01/06/2023 in the school of (?) within the context of AZORESBOT2023.
@@ -12,8 +10,9 @@ In the case that someone that already has significant experience with Webots com
           WHY USE WEBOTS
           
 The answer is quite simple really. Convenience and money. As of the writing of this document the cheapest variation of the physical e-puck robot used in this tutorial is around 850 euros. 
-This is an ammount of money that not just anyone can afford to dump into a robot. But Webots is free. Anyone that can run Webots can use Webots.
-And in the context of school/university learning, this simulator also presents
+This is an amount of money that not just anyone can afford to spend in a robot. But Webots is free. Anyone that can run Webots can use Webots.
+
+And in the context of school/university learning, this simulator also enables student to not have to depend on hardware provided by the institution in order to continue their learning. They do not need to reserve a timeslot for them to use a robot, they do not need to take turns bringing it home, they can start the work within the classroom and continue it at home while working on the exact same world file through the Webots simulator
 
 
 
