@@ -52,7 +52,7 @@ It is the work environment in which you add and modify nodes. The world file wil
 
 **CONTROLLER**
 
-It is a text file that contains the code you write. It is not contained within the world file, it is a separate file. ****(Confirm this, clarify naming conventions)****
+It is a text file that contains the code you write. It is not contained within the world file, it is a separate file. 
 
         MAKING A NEW WORLD
 
@@ -64,12 +64,25 @@ Afterwards give it a name and tick the box for 'Add a rectangle arena'. This is 
 
 ![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/e81a4e44-07ff-4d9f-b08a-5624d7d811bd)
 
-To note: Some older videos and posts adressing how Webots work are based on older versions. More recent versions put the controller wizard within the file tab, so if you are not finding the controller wizard tab, it's because you are in a more recent version of Webots and must instead create a new controller through the file tab.
+To note:
 
+Some older videos and posts adressing how Webots work are based on older versions. More recent versions put the controller wizard within the file tab, so if you are not finding the controller wizard tab, it's because you are in a more recent version of Webots and must instead create a new controller through the file tab.
 
+Webots expects files to follow certain conventions for controllers if you are adding the files manually and not through the new controller option in the Webots interface.
+Please look at the last section in this page of the documentation for the naming/directory convention.
+https://cyberbotics.com/doc/guide/the-standard-file-hierarchy-of-a-project
 
+          ADDING A ROBOT
+          
+At this stage you should have already created a world and can now add a robot and any other object you so desire. To add any object select the + icon below the top right options.
 
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/280c61f3-ddf8-4272-873d-f5591dd19635)
 
+Then you can use the find text box to look up what you want. In this case we need an e-puck
+
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/ac8c67fe-af11-453b-be7e-c397ebbaeb89)
+
+Then it's just a matter of clicking 'Add' and the robot should spawn in your arena.
 
           E-PUCK SPECIFICS
 
@@ -82,9 +95,15 @@ This particular pages includes the default parts for the e-puck, their names, an
 
 At any time when you are fiddling around in Webots, if you have any doubts on how a specific part of the robot works, consult the documentation.
 
+
+
           CAMERA SPECIFICS
 
-Explain camera image functioning, how color recog works
+This code enables the calls the camera and enables it based on the TIME_STEP previously configured
+camera = robot.getDevice('camera')
+camera.enable(TIME_STEP) 
+
+
 
           LOOP SPECIFICS
 
