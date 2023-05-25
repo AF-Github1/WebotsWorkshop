@@ -100,7 +100,9 @@ At any time when you are fiddling around in Webots, if you have any doubts on ho
           CAMERA SPECIFICS
 
 This code enables the calls the camera and enables it based on the TIME_STEP previously configured
+
 camera = robot.getDevice('camera')
+
 camera.enable(TIME_STEP) 
 
 
@@ -123,8 +125,11 @@ explain how to call supervisor, making dedicated node, what tou can and cant cal
 **Authors/Workshop Lecturers**
 
 António José Lopes de Freitas
+
 Carlos Cabral
+
 João Lopes de Freitas
+
 
 
 
