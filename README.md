@@ -74,7 +74,7 @@ https://cyberbotics.com/doc/guide/the-standard-file-hierarchy-of-a-project
 
           ADDING A ROBOT
           
-At this stage you should have already created a world and can now add a robot and any other object you so desire. To add any object select the + icon below the top right options.
+At this stage you should have already created a world and can now add a robot and any other object you so desire. To add any object select the + icon below the top left options.
 
 ![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/280c61f3-ddf8-4272-873d-f5591dd19635)
 
