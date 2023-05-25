@@ -56,21 +56,18 @@ It is a text file that contains the code you write. It is not contained within t
 
         MAKING A NEW WORLD
 
+In the top left side of the interface go to File>New World File
 
 https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/3f537982-cecf-418d-8d71-23879f719dd5
 
+Afterwards give it a name and tick the box for 'Add a rectangle arena'. This is not enabled by default. It's possible to later add the arena but it's quicker and more covenient this way
 
-1- File
-
-
-
-2- Make a new world
-.....
-
-explain arena
-explain NUE coordinates
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/e81a4e44-07ff-4d9f-b08a-5624d7d811bd)
 
 To note: Some older videos and posts adressing how Webots work are based on older versions. More recent versions put the controller wizard within the file tab, so if you are not finding the controller wizard tab, it's because you are in a more recent version of Webots and must instead create a new controller through the file tab.
+
+
+
 
 
 
