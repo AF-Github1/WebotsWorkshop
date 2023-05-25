@@ -5,6 +5,7 @@ This repository contains the instructions and the code for the Webots workshop d
 It is meant to serve as a supporting learning document.
 
 In the case that someone that already has significant experience with Webots comes here, this repository will be mostly useless, as this is only meant as an introduction to the Webots interface and some of the specific functions that Webots uses.
+![2076b199bc93919cd42261f8e70b2b10](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/240b25da-13b7-4c12-828e-198ac34066a6)
 
 
           WHY USE WEBOTS
@@ -14,7 +15,7 @@ This is an amount of money that not just anyone can afford to spend in a robot. 
 
 And in the context of school/university learning, this simulator also enables student to not have to depend on hardware provided by the institution in order to continue their learning. They do not need to reserve a timeslot for them to use a robot, they do not need to take turns bringing it home, they can start the work within the classroom and continue it at home while working on the exact same world file through the Webots simulator.
 
-          **INSTALLATION**
+          INSTALLATION
 
 WEBOTS https://cyberbotics.com/instruction 
 
@@ -26,7 +27,7 @@ https://www.python.org/downloads/windows/
 Path instructions here...
 check ubuntu and redhat specifics including path..
 
-        **GLOSSARY**
+        GLOSSARY
 
 **NODE**
 
@@ -54,7 +55,7 @@ It is the work environment in which you add and modify nodes. The world file wil
 
 It is a text file that contains the code you write. It is not contained within the world file, it is a separate file. ****(Confirm this, clarify naming conventions)****
 
-        **MAKING A NEW WORLD**
+        MAKING A NEW WORLD
 
 1- File
 2- Make a new world
@@ -67,7 +68,7 @@ To note: Some older videos and posts adressing how Webots work are based on olde
 
 
 
-          **E-PUCK SPECIFICS**
+          E-PUCK SPECIFICS
 
 For the sake of this demonstration the GCtronic's e-puck will be used. One thing that will mentioned a few times over this document is the Webots documentation that can specify certain aspects of Webots and its robots at a much greater detail than one could ever do here. As such any explanation on how a robot works will be supported with a link to the relevant documentation 
 
