@@ -34,7 +34,7 @@ Any object that be can added or manipulated in Webots. The world can be consider
 
 **ROOT NODE**
 
-Node highest in a given hierarchy. Usually the created world file is considered the root node
+Highest node in a given hierarchy. Usually the created world file is considered the root node
 
 **CHILDREN NODE**
 
