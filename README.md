@@ -1,6 +1,6 @@
           # WebotsWorkshop
 
-This repository contains the instructions and the code for the Webots workshop done in 31/05/2023 and 01/06/2023 in the school of (?).
+This repository contains the instructions and the code for the Webots workshop done in 31/05/2023 and 01/06/2023 in the school of (?) within the context of AZORESBOT2023.
 
 It is meant to serve as a supporting document.
 
@@ -17,15 +17,6 @@ https://www.python.org/downloads/windows/
 
 Path instructions here...
 check ubuntu and redhat specifics including path..
-
-        MAKING A NEW WORLD
-
-
-
-explain arena
-explain NUE coordinates
-
-To note: Some older videos and posts adressing how Webots work are based on older versions. More recent versions put the controller wizard within the file tab, so if you are not finding the controller wizard tab, it's because you are in a more recent version of Webots and must instead create a new controller through the file tab.
 
         GLOSSARY
 
@@ -47,7 +38,30 @@ It's the visual representation for the entire node hierarchy and its the interfa
 
 node, proto node, adding removing, external photo...
 
+**WORLD**
+
+It is the work environment in which you add and modify nodes. The world file will contain all of these changes.
+
+**CONTROLLER**
+
+It is a text file that contains the code you write. It is not contained within the world file, it is a separate file. ****(Confirm this, clarify naming conventions)****
+
+        MAKING A NEW WORLD
+
+1- File
+2- Make a new world
+.....
+
+explain arena
+explain NUE coordinates
+
+To note: Some older videos and posts adressing how Webots work are based on older versions. More recent versions put the controller wizard within the file tab, so if you are not finding the controller wizard tab, it's because you are in a more recent version of Webots and must instead create a new controller through the file tab.
+
+
+
           E-PUCK SPECIFICS
+
+For the sake of this demonstration the GCtronic's e-puck will be used. One thing that will mentioned a few times over this document is the Webots documentation that can specify certain aspects of Webots and it's robot at a much greater detail that I could ever do here. As such any explanation on how a robot works will be supported with a link to the relevant documentation 
 
 https://cyberbotics.com/doc/guide/epuck
 
