@@ -5,7 +5,6 @@ This repository contains the instructions and the code for the Webots workshop d
 It is meant to serve as a supporting learning document.
 
 In the case that someone that already has significant experience with Webots comes here, this repository will be mostly useless, as this is only meant as an introduction to the Webots interface and some of the specific functions that Webots uses.
-![2076b199bc93919cd42261f8e70b2b10](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/240b25da-13b7-4c12-828e-198ac34066a6)
 
 
           WHY USE WEBOTS
@@ -57,7 +56,14 @@ It is a text file that contains the code you write. It is not contained within t
 
         MAKING A NEW WORLD
 
+
+https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/3f537982-cecf-418d-8d71-23879f719dd5
+
+
 1- File
+
+
+
 2- Make a new world
 .....
 
