@@ -104,8 +104,7 @@ explain how to call supervisor, making dedicated node, what tou can and cant cal
 
 
 
-**Authors/Workshop Lecturers
-**
+**Authors/Workshop Lecturers**
 
 António José Lopes de Freitas
 Carlos Cabral
