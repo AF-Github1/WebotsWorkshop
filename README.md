@@ -54,7 +54,7 @@ It is a text file that contains the code you write. It is not contained within t
 
         MAKING A NEW WORLD
 
-In the top left side of the interface go to File>New World File
+In the top left side of the interface go to File>New>New World File
 
 https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/3f537982-cecf-418d-8d71-23879f719dd5
 
