@@ -44,8 +44,6 @@ All nodes within the hierarchy of a root node. Any object that is added to a wor
 
 It's the visual representation for the entire node hierarchy and its the interface where the user can modify, create or delete nodes.
 
-node, proto node, adding removing, external photo...
-
 **WORLD**
 
 It is the work environment in which you add and modify nodes. The world file will contain all of these changes.
@@ -97,7 +95,14 @@ At any time when you are fiddling around in Webots, if you have any doubts on ho
 
           MAKING A CONTROLLER
          
-Now that we have our world file and our robot ready it is time to give it ............
+Now that we have our world file and our robot ready it is time to program. You now want to create a new controller. By going to the file tab....... (Make video to put here again)
+
+
+After creating a new controller you must now go to the children node in the e-puck subtree and select the new controller you created (put image here).....
+
+          CODING YOUR FIRST ROBOT
+          
+Explain timestep before anything else here.....
 
 
           CAMERA SPECIFICS
@@ -108,7 +113,8 @@ camera = robot.getDevice('camera')
 
 camera.enable(TIME_STEP) 
 
-
+At every TIME_STEP instance the camera will get an image. 
+In terms of colour recognition which is what we are using the camera for in this tutorial, think of the image as a matrix of RGB coloured pixels.... (Explain how it prioritizes colour here, explain rgb pixel count)
 
           LOOP SPECIFICS
 
