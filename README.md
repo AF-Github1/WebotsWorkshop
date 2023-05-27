@@ -95,15 +95,164 @@ At any time when you are fiddling around in Webots, if you have any doubts on ho
 
           MAKING A CONTROLLER
          
-Now that we have our world file and our robot ready it is time to program. You now want to create a new controller. By going to the file tab....... (Make video to put here again)
+Now that we have our world file and our robot ready it is time to program. You now want to create a new controller. By going to File>New>New Robot Controller
 
+https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/615c33c4-8dd0-4904-8df9-6a153d87c950
 
-After creating a new controller you must now go to the children node in the e-puck subtree and select the new controller you created (put image here).....
+Select the coding language you will code it on, for the purposes of this tutorial this will be python, select a IDE, which should be Webots and finally give it a name, which can be whatever you like.
+
+Now that we have our controller we need to go to the controller children node of the e-puck in the scene tree. There will be a controller selected by default. Change it to the new controller you just created.
+
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/cae170db-e742-48e9-a002-ff8b07fa9806)
+
+Now to the right of your screen you should now see your controller text file that should look something like this
+
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/19437f15-0621-42e1-93a3-53165b4f92bf)
+
+          CONTROLLER BASICS
+
+There are some fundamental pieces of information one must know before starting to program their robot. 
+
+First of all the simulation is based on a timestep, this being the time in miliseconds that takes for each instance in the simulation. So if you have a camera capturing images, it will take a new one every timestep.
+
+If you change the timestep remember that the timestep should be a multiple of the first timestep that you created initially. So if your initial timestep is 16, then if you create a new value it should be new values of 32,48,64 and so on. This is so that every part of the simulation is in sync. If the simulation stops being in sync some issues might crop up like certain objects becoming non functional or not function as they should.
+
+Another important point is how you call each part of the robot. They may have to be imported and they follow certain conventions in order to be called and activated. This will be explained in greater detail in the coding section below this one.
 
           CODING YOUR FIRST ROBOT
-          
-Explain timestep before anything else here.....
+ 
+# This line calls the parts of the robot I used to code in this controller. 
+from controller import Robot, DistanceSensor, Motor, Camera, LED
 
+# I define the timestep variable here and define max speed, a variable to make it a bit more covenient to change the robots velocity. This doesn't need to be a particular value, this just happens to be the top speed for the physical e-puck
+TIME_STEP = 32
+MAX_SPEED = 6.28
+
+
+# I create the robot instance with this line
+robot = Robot()
+# This is a list for the sensor names. These are the sensors around the robot that detect the proximity of objects. After making this list I activate each one of them with a for function and using the timestep variable previously configured, so they will get proximity information at every timestep
+ps = []
+psNames = [
+    'ps0', 'ps1', 'ps2', 'ps3',
+    'ps4', 'ps5', 'ps6', 'ps7'
+]
+
+for i in range(8):
+    ps.append(robot.getDevice(psNames[i]))
+    ps[i].enable(TIME_STEP)
+    
+    
+# This is a list for the LED names. Similarly to the previous lines, this calls upon all the LEDS in order to activate them.
+led = []
+ledNames = [
+    'led0', 'led1', 'led2', 'led3',
+    'led4', 'led5', 'led6', 'led7'
+]
+
+for j in range(8):
+    led.append(robot.getDevice(ledNames[j]))
+    
+  
+# This activates the right and left motors for the robot
+leftMotor = robot.getDevice('left wheel motor')
+rightMotor = robot.getDevice('right wheel motor')
+
+# The set position function defines the target destination for the motors. In this case we want them to keep moving, so we just set it to infinite
+leftMotor.setPosition(float('inf'))
+rightMotor.setPosition(float('inf'))
+# In here this just defines the initial velocity for the motor. So whenever it starts running the code in this controller it starts from 0 velocity.
+leftMotor.setVelocity(0.0)
+rightMotor.setVelocity(0.0)
+
+# This activates the camera. We call the camera and enable image gathering based on timestep
+       
+camera = robot.getDevice('camera')
+camera.enable(TIME_STEP) 
+
+    
+# This activates the GPS. (INSERT ADDING GPS IN TURRET SLOT HERE).........
+
+gps = robot.getGPS('gps')
+gps.enable(TIME_STEP)
+
+
+
+# This starts out loop for our robot
+while robot.step(TIME_STEP) != -1:
+
+    # This creates a list to register the values obtained from the proximity sensors
+    psValues = []
+    for i in range(8):
+        psValues.append(ps[i].getValue())
+       
+  # This gets the values obtained by the GPS and prints them to the console
+ 
+    gps_value = gps.getValues()
+    print(gps_value)   
+    msg = "GPS test- "
+    for each_val in gps_value:
+        msg += " {0:0.2f}".format(each_val)
+    print(msg)
+  # This is the logic for the obstacle detection. Whenever the appropriate sensors detect they are within a given distance of an obstacle, depending on which sensors detect it we either define right_obstacle or             # left_obstacle as true.
+    right_obstacle = psValues[0] > 80.0 or psValues[1] > 80.0 or psValues[2] > 80.0
+    left_obstacle = psValues[5] > 80.0 or psValues[6] > 80.0 or psValues[7] > 80.0
+
+
+  # Whenever the value of the right/left obstacle is true we change the speed for each othe the motors. As such, the robot will spin either to the left or to the right until it detects there is no more obstacles
+  # To note that this code does not prevent a obstacle detection loop, so if the robot manages to get a situation where it detects obstacles in both sides it will get stuck until manually removed from the position.
+  
+  https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/4fa13e96-1e7d-4dce-b171-fd9f04d3fafe
+
+    leftSpeed  = MAX_SPEED
+    rightSpeed = MAX_SPEED
+    if left_obstacle:
+        # Virar para a direira
+        leftSpeed  = 0.5 * MAX_SPEED
+        rightSpeed = -0.5 * MAX_SPEED
+    elif right_obstacle:
+        # Virar para a esquerda
+        leftSpeed  = -0.5 * MAX_SPEED
+        rightSpeed = 0.5 * MAX_SPEED
+        
+    leftMotor.setVelocity(leftSpeed)
+    rightMotor.setVelocity(rightSpeed)
+    
+    (THIS PART NOT EDITED YET.-..............
+    # Image check. Ponto importante, não deixar isto em loop infinito. 
+    # Consome os recursos todo do programa. Checks deverão ser intermitentes.(robot.step)
+    # loop de distinguir cores
+    for x in range(0,camera.getWidth()):
+        for y in range(0,camera.getHeight()):
+            image = camera.getImageArray()
+
+            robot.step(TIME_STEP)
+            red = image[x][y][0]
+            green = image[x][y][1]
+            blue = image[x][y][2]
+            
+            if red > green and red > blue:
+                for j in range(8):
+                    led[j].set(1)
+                    robot.step(TIME_STEP)
+                    led[j].set(0)
+                    print('red')
+            if green > red and green > blue:
+               for j in range(8):
+                   led[j].set(1)
+                   robot.step(TIME_STEP)
+                   led[j].set(0)    
+                   print('green')   
+            if blue > red and blue > green:
+               for j in range(8):
+                   led[j].set(1)
+                   robot.step(TIME_STEP)
+                   led[j].set(0) 
+                   print('blue')
+            break
+        break
+    
+ 
 
           CAMERA SPECIFICS
 
