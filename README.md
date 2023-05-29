@@ -1,6 +1,6 @@
 WebotsWorkshop
 
-This repository contains the instructions and the code for the Webots workshop done in 31/05/2023 and 01/06/2023 in the school of (?) within the context of AZORESBOT2023.
+This repository contains the instructions and the code for the Webots workshops done in 31/05/2023 and 01/06/2023 within the context of AZORESBOT2023.
 
 It is meant to serve as a supporting learning document.
 
@@ -9,7 +9,7 @@ In the case that someone that already has significant experience with Webots com
 
           WHY USE WEBOTS
           
-The answer is quite simple really. Convenience and money. As of the writing of this document the cheapest variation of the physical e-puck robot used in this tutorial is around 850 euros. 
+Convenience and money. As of the writing of this document the cheapest variation of the physical e-puck robot used in this tutorial is around 850 euros. 
 This is an amount of money that not just anyone can afford to spend in a robot. But Webots is free. Anyone that can run Webots can use Webots.
 
 And in the context of school/university learning, this simulator also enables students to not have to depend on hardware provided by the institution in order to continue their learning. They do not need to reserve a timeslot for them to use a robot, they do not need to take turns bringing it home, they can start the work within the classroom and continue it at home while working on the exact same world file through the Webots simulator.
@@ -121,7 +121,9 @@ Another important point is how you call each part of the robot. They may have to
 
           CODING YOUR FIRST ROBOT
  
-# This line calls the parts of the robot I used to code in this controller. 
+ Below I will show some sample code along with the explanation of what it does. I will also show how to install certain modules 
+ 
+# This line calls the modules of the robot used to code in this controller. 
 from controller import Robot, DistanceSensor, Motor, Camera, LED
 
 # I define the timestep variable here and define max speed, a variable to make it a bit more covenient to change the robots velocity. This doesn't need to be a particular value, this just happens to be the top speed for the physical e-puck
@@ -178,7 +180,7 @@ gps.enable(TIME_STEP)
 
 
 
-# This starts out loop for our robot
+# This starts logic loop for our robot
 while robot.step(TIME_STEP) != -1:
 
     # This creates a list to register the values obtained from the proximity sensors
@@ -219,9 +221,7 @@ while robot.step(TIME_STEP) != -1:
     rightMotor.setVelocity(rightSpeed)
     
     (THIS PART NOT EDITED YET.-..............
-    # Image check. Ponto importante, não deixar isto em loop infinito. 
-    # Consome os recursos todo do programa. Checks deverão ser intermitentes.(robot.step)
-    # loop de distinguir cores
+  # This part of the loop gets the value of the image obtained from the camera in pixels. For each pixel that corresponds to a given RGB value, 
     for x in range(0,camera.getWidth()):
         for y in range(0,camera.getHeight()):
             image = camera.getImageArray()
