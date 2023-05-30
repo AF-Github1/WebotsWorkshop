@@ -113,27 +113,32 @@ Now to the right of your screen you should now see your controller text file tha
 
 There are some fundamental pieces of information one must know before starting to program a robot. 
 
-First of all the simulation is based on a timestep, this being the time in miliseconds that takes for each instance of any action to occur in the simulation. 
+First of all the simulation is based on a timestep, this being the time in miliseconds that takes for each instance of any action to occur in the simulation. You can check and change the value of the timestep in the basicTimeStep children node or define a timestep value through a variable inside a controller.
 
-If you have different timesteps for different parts/logic loops of the robot, remember that the timestep should be a multiple of the first timestep that you created initially. So if your initial timestep is 16, then if you create a new value it should be new values of 32,48,64 and so on. This is so that every part of the simulation is in sync. If the simulation stops being in sync some issues might crop up like certain objects becoming non functional/not function as they should.
+By default the basicTimeStep is 32
+
+If you have different timesteps for different parts/logic loops of the robot, remember that the timestep should be a multiple of the first timestep that you created initially. If you create a new value it should be always be in multiples. So if your first timestep you declared is 16, your other values should be 32,64,128 and so on. This is so that every part of the simulation is in sync. If the simulation stops being in sync some issues might crop up like certain objects becoming non functional/not function as they should.
 
 Another important point is how you call each part of the robot. They may need to be imported and they follow certain conventions in order to be activated. This will be explained in greater detail in the coding section below.
 
           CODING YOUR FIRST ROBOT
  
-I will show some sample code along with the explanation of what it does. I will also show how to install certain modules 
- 
-# This line calls the modules of the robot used to code in this controller. 
+I will show some sample code along with the explanation of what it does. I will also show how to install certain modules. 
+
+**The full code without any comments will be put in a section below this one if you wish to copy it.
+**
+
+#This line calls the modules of the robot used to code in this controller. 
 from controller import Robot, DistanceSensor, Motor, Camera, LED
 
-# I define the timestep variable here and define max speed, a variable to make it a bit more covenient to change the robots velocity. This doesn't need to be a particular value, this just happens to be the top speed for the physical e-puck
+#I define the timestep variable here and define max speed, a variable to make it a bit more covenient to change the robots velocity. This doesn't need to be a particular value, this just happens to be the top speed for the physical e-puck
 TIME_STEP = 32
 MAX_SPEED = 6.28
 
 
-# I create the robot instance with this line
+#This creates the first robot instance
 robot = Robot()
-# This is a list for the sensor names. These are the sensors around the robot that detect the proximity of objects. After making this list I activate each one of them with a for function and using the timestep variable previously configured, so they will get proximity information at every timestep
+#This is a list for the sensor names. These are the sensors around the robot that detect the proximity of objects. After making this list I activate each one of them with a for function and using the timestep variable previously configured, so they will get proximity information at every timestep
 ps = []
 psNames = [
     'ps0', 'ps1', 'ps2', 'ps3',
@@ -145,7 +150,7 @@ for i in range(8):
     ps[i].enable(TIME_STEP)
     
     
-# This is a list for the LED names. Similarly to the previous lines, this calls upon all the LEDS in order to activate them.
+#This is a list for the LED names. Similarly to the previous lines, this calls upon all the LEDS in order to activate them.
 led = []
 ledNames = [
     'led0', 'led1', 'led2', 'led3',
@@ -156,31 +161,40 @@ for j in range(8):
     led.append(robot.getDevice(ledNames[j]))
     
   
-# This activates the right and left motors for the robot
+#This activates the right and left motors for the robot
 leftMotor = robot.getDevice('left wheel motor')
 rightMotor = robot.getDevice('right wheel motor')
 
-# The set position function defines the target destination for the motors. In this case we want them to keep moving, so we just set it to infinite
+#The set position function defines the target destination for the motors. In this case we want them to keep moving, so we just set it to infinite
 leftMotor.setPosition(float('inf'))
 rightMotor.setPosition(float('inf'))
-# In here this just defines the initial velocity for the motor. So whenever it starts running the code in this controller it starts from 0 velocity.
+#In here this just defines the initial velocity for the motor. So whenever it starts running the code in this controller it starts from 0 velocity.
 leftMotor.setVelocity(0.0)
 rightMotor.setVelocity(0.0)
 
-# This activates the camera. We call the camera and enable image gathering based on timestep
+#This activates the camera. We call the camera and enable image gathering based on timestep
        
 camera = robot.getDevice('camera')
 camera.enable(TIME_STEP) 
 
     
-# This activates the GPS. (INSERT ADDING GPS IN TURRET SLOT HERE).........
+#This activates the GPS. 
 
 gps = robot.getGPS('gps')
 gps.enable(TIME_STEP)
 
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/35aba30f-e09f-4fb0-8a28-4f6be1963e85)
 
+--------------------------------------------------------
+By default the e-puck robot does not come with the gps module. As such it is necessary to add the gps through the scene tree. Select the turret slot in the scene tree
 
-# This starts the logic loop for our robot
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/9e3d8aa4-f6ba-4fba-add3-3848f3af4caa)
+
+Using the same button as we used before to add a new object, look up GPS in the search box and add it to the robot.
+
+--------------------------------------------------------
+
+#This starts the logic loop for our robot
 while robot.step(TIME_STEP) != -1:
 
     # This creates a list to register the values obtained from the proximity sensors
@@ -188,7 +202,7 @@ while robot.step(TIME_STEP) != -1:
     for i in range(8):
         psValues.append(ps[i].getValue())
        
-  # This gets the values obtained by the GPS and prints them to the console after formatting them.
+  #This gets the values obtained by the GPS and prints them to the console after formatting them.
  
     gps_value = gps.getValues()
     print(gps_value)   
@@ -197,13 +211,13 @@ while robot.step(TIME_STEP) != -1:
         msg += " {0:0.2f}".format(each_val)
     print(msg)
     
-  # This is the logic for the obstacle detection. Whenever the appropriate sensors detect they are within a given distance of an obstacle, depending on which sensors detect it we either define        right_obstacle or left_obstacle as true.
+  #This is the logic for the obstacle detection. Whenever the appropriate sensors detect they are within a given distance of an obstacle, depending on which sensors detect it we either define right_obstacle or left_obstacle as true.
     right_obstacle = psValues[0] > 80.0 or psValues[1] > 80.0 or psValues[2] > 80.0
     left_obstacle = psValues[5] > 80.0 or psValues[6] > 80.0 or psValues[7] > 80.0
 
 
-  # Whenever the value of the right/left obstacle is true we change the speed for each of the motors. As such, the robot will rotate either to the left or to the right until the sensors stop detecting obstacles
-  # To note that this simple code does not prevent a obstacle detection loop, so if the robot manages to get a situation where it detects obstacles in both sides it will get stuck until manually removed from the position.
+  #Whenever the value of the right/left obstacle is true we change the speed for each of the motors. As such, the robot will rotate either to the left or to the right until the sensors stop detecting obstacles
+  #To note that this simple code does not prevent a obstacle detection loop, so if the robot manages to get a situation where it detects obstacles in both sides it will get stuck until manually removed from the position.
   
   https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/4fa13e96-1e7d-4dce-b171-fd9f04d3fafe
 
@@ -220,14 +234,27 @@ while robot.step(TIME_STEP) != -1:
         
     leftMotor.setVelocity(leftSpeed)
     rightMotor.setVelocity(rightSpeed)
-    
-    (THIS PART NOT EDITED YET.-..............
-  # This part of the loop gets the value of the image obtained from the camera in pixels. For each pixel that corresponds to a given RGB value, 
+   
+   #This part of the loop is relevant to the camera image logic. I will need to explain a couple of concepts before going in greater detail
+ 
+   --------------------------------------------------------
+   
+   The camera in webots sees image as a matrix of pixels, and it assigns to each one of these pixels a RGBA value. It is possible to manually define the RGBA value of an object without actually changing it's colour, so the default RGB value for certain objects might not correspond to reality. For example, the brown walls of the arena are perceived as blue by the camera.
+   
+   It is not possible to get information out of the bounds of the camera image. As such the FOR loop for the image array must be within the height and width of the matrix of the gathered image.
+   
+   --------------------------------------------------------
+   
+  #As mentioned before, this for loops handle the logic for gathering and checking the RGBA values for the pixels in the image obtained through the camera
+  
     for x in range(0,camera.getWidth()):
         for y in range(0,camera.getHeight()):
             image = camera.getImageArray()
 
             robot.step(TIME_STEP)
+  #This part stores the RGBA values of the pixels within a variable. In image[x][y][0], the x and y correspond to the coordinates of the pixels and the [0] corresponds to R in RGBA (Red). As such, 1 corresponds to green, 2 to blue and not used in this code, 3 corresponds to Alpha.
+  #It compares the RGB values in the image and prints out the appropriate colour for whichever type is more numerous.
+  
             red = image[x][y][0]
             green = image[x][y][1]
             blue = image[x][y][2]
@@ -254,17 +281,6 @@ while robot.step(TIME_STEP) != -1:
         break
     
  
-
-          CAMERA SPECIFICS
-
-This code enables the calls the camera and enables it based on the TIME_STEP previously configured
-
-camera = robot.getDevice('camera')
-
-camera.enable(TIME_STEP) 
-
-At every TIME_STEP instance the camera will get an image. 
-In terms of colour recognition which is what we are using the camera for in this tutorial, think of the image as a matrix of RGB coloured pixels.... (Explain how it prioritizes colour here, explain rgb pixel count)
 
 
           SUPERVISOR
