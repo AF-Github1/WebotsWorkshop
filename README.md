@@ -266,13 +266,6 @@ camera.enable(TIME_STEP)
 At every TIME_STEP instance the camera will get an image. 
 In terms of colour recognition which is what we are using the camera for in this tutorial, think of the image as a matrix of RGB coloured pixels.... (Explain how it prioritizes colour here, explain rgb pixel count)
 
-          LOOP SPECIFICS
-
-Explain need for timestep, explain how to be careful with requests and calls as it crashes the program
-
-          DIRECTORY NAMING SPECIFICS
-
-46explain how files will have to be named
 
           SUPERVISOR
 
