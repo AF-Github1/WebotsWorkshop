@@ -89,7 +89,7 @@ For the sake of this demonstration the GCtronic's e-puck will be used. One thing
 [https://cyberbotics.com/doc/guide/epuck
 ](https://cyberbotics.com/doc/guide/epuck)
 
-This particular pages includes the default parts for the e-puck, their names, and where they are located on the robot. For example, it will show where the camera is positioned and what string you should use in your code to call the camera. The same for any other part of the robot like its LEDS, its sensors and a slew of other technical details. 
+These particular pages includes the default parts for the e-puck, their names, and where they are located on the robot. For example, it will show where the camera is positioned and what string you should use in your code to call the camera. The same for any other part of the robot like its LEDS, its sensors and a slew of other technical details. 
 
 At any time when you are fiddling around in Webots, if you have any doubts on how a specific part of the robot works, consult the documentation.
 
