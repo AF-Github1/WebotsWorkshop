@@ -239,7 +239,7 @@ while robot.step(TIME_STEP) != -1:
  
    --------------------------------------------------------
    
-   The camera in webots sees image as a matrix of pixels, and it assigns to each one of these pixels a RGBA value. It is possible to manually define the RGBA value of an object without actually changing it's colour, so the default RGB value for certain objects might not correspond to reality. For example, the brown walls of the arena are perceived as blue by the camera.
+   The camera in webots sees image as a matrix of pixels, and it assigns to each one of these pixels a RGBA value. It is possible to manually define the RGBA value of an object without actually changing it's colour, so the default RGB value for certain objects might not correspond to reality. For example, the walls of the arena are perceived as blue by the camera.
    
    It is not possible to get information out of the bounds of the camera image. As such the FOR loop for the image array must be within the height and width of the matrix of the gathered image.
    
