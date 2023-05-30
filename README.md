@@ -9,7 +9,7 @@ In the case that someone that already has significant experience with Webots com
 
           WHY USE WEBOTS
           
-Convenience and money. As of the writing of this document the cheapest variation of the physical e-puck robot used in this tutorial is around 850 euros. 
+Practicality and reduction of expenses. As of the writing of this document the cheapest variation of the physical e-puck robot used in this tutorial is around 850 euros. 
 This is an amount of money that not just anyone can afford to spend in a robot. But Webots is free. Anyone that can run Webots can use Webots.
 
 And in the context of school/university learning, this simulator also enables students to not have to depend on hardware provided by the institution in order to continue their learning. They do not need to reserve a timeslot for them to use a robot, they do not need to take turns bringing it home, they can start the work within the classroom and continue it at home while working on the exact same world file through the Webots simulator.
@@ -58,7 +58,7 @@ In the top left side of the interface go to File>New>New World File
 
 https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/3f537982-cecf-418d-8d71-23879f719dd5
 
-Afterwards give it a name and tick the box for 'Add a rectangle arena'. This is not enabled by default. It's possible to later add the arena but it's quicker and more covenient this way
+Afterwards give it a name and tick the box for 'Add a rectangle arena'. This is not enabled by default. It's possible to later add the arena but it's quicker this way
 
 ![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/e81a4e44-07ff-4d9f-b08a-5624d7d811bd)
 
@@ -105,23 +105,23 @@ Now that we have our controller we need to go to the controller children node of
 
 ![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/cae170db-e742-48e9-a002-ff8b07fa9806)
 
-Now to the right of your screen you should now see your controller text file that should look something like this
+Now to the right of your screen you should now see your controller text file that should look like this
 
 ![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/19437f15-0621-42e1-93a3-53165b4f92bf)
 
           CONTROLLER BASICS
 
-There are some fundamental pieces of information one must know before starting to program their robot. 
+There are some fundamental pieces of information one must know before starting to program a robot. 
 
-First of all the simulation is based on a timestep, this being the time in miliseconds that takes for each instance in the simulation. So if you have a camera capturing images, it will take a new one every timestep.
+First of all the simulation is based on a timestep, this being the time in miliseconds that takes for each instance of any action to occur in the simulation. 
 
-If you change the timestep remember that the timestep should be a multiple of the first timestep that you created initially. So if your initial timestep is 16, then if you create a new value it should be new values of 32,48,64 and so on. This is so that every part of the simulation is in sync. If the simulation stops being in sync some issues might crop up like certain objects becoming non functional or not function as they should.
+If you have different timesteps for different parts/logic loops of the robot, remember that the timestep should be a multiple of the first timestep that you created initially. So if your initial timestep is 16, then if you create a new value it should be new values of 32,48,64 and so on. This is so that every part of the simulation is in sync. If the simulation stops being in sync some issues might crop up like certain objects becoming non functional/not function as they should.
 
-Another important point is how you call each part of the robot. They may have to be imported and they follow certain conventions in order to be called and activated. This will be explained in greater detail in the coding section below this one.
+Another important point is how you call each part of the robot. They may need to be imported and they follow certain conventions in order to be activated. This will be explained in greater detail in the coding section below.
 
           CODING YOUR FIRST ROBOT
  
- Below I will show some sample code along with the explanation of what it does. I will also show how to install certain modules 
+I will show some sample code along with the explanation of what it does. I will also show how to install certain modules 
  
 # This line calls the modules of the robot used to code in this controller. 
 from controller import Robot, DistanceSensor, Motor, Camera, LED
@@ -180,7 +180,7 @@ gps.enable(TIME_STEP)
 
 
 
-# This starts logic loop for our robot
+# This starts the logic loop for our robot
 while robot.step(TIME_STEP) != -1:
 
     # This creates a list to register the values obtained from the proximity sensors
@@ -188,7 +188,7 @@ while robot.step(TIME_STEP) != -1:
     for i in range(8):
         psValues.append(ps[i].getValue())
        
-  # This gets the values obtained by the GPS and prints them to the console
+  # This gets the values obtained by the GPS and prints them to the console after formatting them.
  
     gps_value = gps.getValues()
     print(gps_value)   
@@ -196,13 +196,14 @@ while robot.step(TIME_STEP) != -1:
     for each_val in gps_value:
         msg += " {0:0.2f}".format(each_val)
     print(msg)
-  # This is the logic for the obstacle detection. Whenever the appropriate sensors detect they are within a given distance of an obstacle, depending on which sensors detect it we either define right_obstacle or             # left_obstacle as true.
+    
+  # This is the logic for the obstacle detection. Whenever the appropriate sensors detect they are within a given distance of an obstacle, depending on which sensors detect it we either define        right_obstacle or left_obstacle as true.
     right_obstacle = psValues[0] > 80.0 or psValues[1] > 80.0 or psValues[2] > 80.0
     left_obstacle = psValues[5] > 80.0 or psValues[6] > 80.0 or psValues[7] > 80.0
 
 
-  # Whenever the value of the right/left obstacle is true we change the speed for each othe the motors. As such, the robot will spin either to the left or to the right until it detects there is no more obstacles
-  # To note that this code does not prevent a obstacle detection loop, so if the robot manages to get a situation where it detects obstacles in both sides it will get stuck until manually removed from the position.
+  # Whenever the value of the right/left obstacle is true we change the speed for each of the motors. As such, the robot will rotate either to the left or to the right until the sensors stop detecting obstacles
+  # To note that this simple code does not prevent a obstacle detection loop, so if the robot manages to get a situation where it detects obstacles in both sides it will get stuck until manually removed from the position.
   
   https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/4fa13e96-1e7d-4dce-b171-fd9f04d3fafe
 
