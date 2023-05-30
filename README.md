@@ -23,8 +23,23 @@ Since this tutorial will be in python, it will also be necessary to install pyth
 Python Windows
 https://www.python.org/downloads/windows/
 
-Path instructions here...
-check ubuntu and redhat specifics including path..
+**Path instructions**
+
+After having both Python and Webots installed you may have to manually tell Webots the path to your python executable.
+
+Go to Tools>Preferences
+
+https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/30c83e1f-39d3-4fb7-992d-19927eda32c4
+
+Type python in the Python Command section
+
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/25416c7b-e6aa-4440-adf4-0abb1b868590)
+
+Now you must go to environment variable and define the path for Python
+
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/bcbfb81b-4bfb-45db-846c-748dbfcb1989)
+
+The path must be the location for the Python executable and it will change depending on where you installed Python. After the path has been correctly configured you will now be able to write Python code for your Webots controller
 
         GLOSSARY
 
@@ -280,15 +295,16 @@ while robot.step(TIME_STEP) != -1:
             break
         break
     
- 
-
-
+    
           SUPERVISOR
 
-explain how to call supervisor, making dedicated node, what tou can and cant call, importable extern photo, explain DEF
+This is a special type of node that serves as a sort of master for the simulation. It can spawn or despawn robots and objects, changes parameters, stop or restart the simulation and so on. What it can't do is get internal values from components of other robots, like camera images.
 
+Any robot can be a supervisor, although it is better to use a dedicated robot node for it........
+............
 
-
+...........
+.............
 
 **Authors/Workshop Lecturers**
 
