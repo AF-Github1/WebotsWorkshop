@@ -16,7 +16,7 @@ And in the context of school/university learning, this simulator also enables st
 
           INSTALLATION
 
-WEBOTS https://cyberbotics.com/instruction 
+WEBOTS [https://cyberbotics.com](https://www.cyberbotics.com/) 
 
 Since this tutorial will be in python, it will also be necessary to install python.
 
