@@ -1,4 +1,4 @@
-Webots Workshop
+WEBOTS WORKSHOP
 
 This repository contains the instructions and the code for the Webots workshops done in 31/05/2023 and 01/06/2023 within the context of AZORESBOT2023.
 
@@ -8,9 +8,9 @@ It is meant to serve as a supporting learning document.
 
 In the case that someone that already has significant experience with Webots comes here, this repository will be mostly useless, as this is only meant as an introduction to the Webots interface and some of the specific functions that Webots uses.
 
-          INSTALLATION
+INSTALLATION
 
-WEBOTS 
+Webots
 
 [https://cyberbotics.com](https://www.cyberbotics.com/) 
 
@@ -38,7 +38,7 @@ Now you must go to environment variable and define the path for Python
 
 The path must be the location for the Python executable and it will change depending on where you installed Python. After the path has been correctly configured you will now be able to write Python code for your Webots controller
 
-        GLOSSARY
+GLOSSARY
 
 **NODE**
 
@@ -64,7 +64,7 @@ It is the work environment in which you add and modify nodes. The world file wil
 
 It is a text file that contains the code you write. It is not contained within the world file, it is a separate file. 
 
-        MAKING A NEW WORLD
+MAKING A NEW WORLD
 
 In the top left side of the interface go to File>New>New World File
 
