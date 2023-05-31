@@ -320,8 +320,8 @@ while robot.step(TIME_STEP) != -1:
     
     
   
-          **FULL UNCOMMENTED CODE**
     
+FULL UNCOMMENTED CODE
     
 from controller import Robot, DistanceSensor, Motor, Camera, LED
 
