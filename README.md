@@ -143,17 +143,23 @@ I will show some sample code along with the explanation of what it does. I will 
 **
 
 #This line calls the modules of the robot used to code in this controller. 
+
 from controller import Robot, DistanceSensor, Motor, Camera, LED
 
 #I define the timestep variable here and define max speed, a variable to make it a bit more covenient to change the robots velocity. This doesn't need to be a particular value, this just happens to be the top speed for the physical e-puck
+
 TIME_STEP = 32
 MAX_SPEED = 6.28
 
 
 #This creates the first robot instance
+
 robot = Robot()
+
 #This is a list for the sensor names. These are the sensors around the robot that detect the proximity of objects. After making this list I activate each one of them with a for function and using the timestep variable previously configured, so they will get proximity information at every timestep
+
 ps = []
+
 psNames = [
     'ps0', 'ps1', 'ps2', 'ps3',
     'ps4', 'ps5', 'ps6', 'ps7'
@@ -165,41 +171,54 @@ for i in range(8):
     
     
 #This is a list for the LED names. Similarly to the previous lines, this calls upon all the LEDS in order to activate them.
+
 led = []
+
 ledNames = [
     'led0', 'led1', 'led2', 'led3',
     'led4', 'led5', 'led6', 'led7'
 ]
 
 for j in range(8):
+
     led.append(robot.getDevice(ledNames[j]))
     
   
 #This activates the right and left motors for the robot
+
 leftMotor = robot.getDevice('left wheel motor')
+
 rightMotor = robot.getDevice('right wheel motor')
 
 #The set position function defines the target destination for the motors. In this case we want them to keep moving, so we just set it to infinite
+
 leftMotor.setPosition(float('inf'))
+
 rightMotor.setPosition(float('inf'))
+
 #In here this just defines the initial velocity for the motor. So whenever it starts running the code in this controller it starts from 0 velocity.
+
 leftMotor.setVelocity(0.0)
+
 rightMotor.setVelocity(0.0)
 
 #This activates the camera. We call the camera and enable image gathering based on timestep
        
 camera = robot.getDevice('camera')
+
 camera.enable(TIME_STEP) 
 
     
 #This activates the GPS. 
 
 gps = robot.getGPS('gps')
+
 gps.enable(TIME_STEP)
 
 ![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/35aba30f-e09f-4fb0-8a28-4f6be1963e85)
 
 --------------------------------------------------------
+
 By default the e-puck robot does not come with the gps module. As such it is necessary to add the gps through the scene tree. Select the turret slot in the scene tree
 
 ![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/9e3d8aa4-f6ba-4fba-add3-3848f3af4caa)
