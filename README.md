@@ -75,7 +75,7 @@ Afterwards give it a name and tick the box for 'Add a rectangle arena'. This is 
 ![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/e81a4e44-07ff-4d9f-b08a-5624d7d811bd)
 
 
-          ADDING A ROBOT
+ADDING A ROBOT
           
 At this stage you should have already created a world and can now add a robot and any other object you so desire. To add any object select the + icon below the top left options.
 
@@ -87,7 +87,7 @@ Then you can use the find text box to look up what you want. In this case we nee
 
 Then it's just a matter of clicking 'Add' and the robot should spawn in your arena.
 
-          E-PUCK SPECIFICS
+E-PUCK SPECIFICS
 
 For the sake of this demonstration the GCtronic's e-puck will be used. One thing that will mentioned a few times over this document is the Webots documentation that can specify certain aspects of Webots and its robots at a much greater detail than one could ever do here. As such any explanation on how a robot works will be supported with a link to the relevant documentation 
 
@@ -98,7 +98,7 @@ These particular pages includes the default parts for the e-puck, their names, a
 
 At any time when you are fiddling around in Webots, if you have any doubts on how a specific part of the robot works, consult the documentation.
 
-          MAKING A CONTROLLER
+MAKING A CONTROLLER
          
 Now that we have our world file and our robot ready it is time to program. You now want to create a new controller. Go to File>New>New Robot Controller
 
@@ -123,7 +123,7 @@ Please look at the last section in this page of the documentation for the naming
 https://cyberbotics.com/doc/guide/the-standard-file-hierarchy-of-a-project
 
 
-          CONTROLLER BASICS
+CONTROLLER BASICS
 
 There are some fundamental pieces of information one must know before starting to program a robot. 
 
@@ -135,7 +135,7 @@ If you have different timesteps for different parts/logic loops of the robot, re
 
 Another important point is how you call each part of the robot. They may need to be imported and they follow certain conventions in order to be activated. This will be explained in greater detail in the coding section below.
 
-          CODING YOUR FIRST ROBOT
+CODING YOUR FIRST ROBOT
  
 I will show some sample code along with the explanation of what it does. I will also show how to install certain modules. 
 
@@ -426,7 +426,7 @@ while robot.step(TIME_STEP) != -1:
         break
     
     
-          SUPERVISOR
+SUPERVISOR
 
 https://cyberbotics.com/doc/reference/supervisor
 
@@ -450,7 +450,7 @@ Only the node that we use for the supervisor should be declared as TRUE and noth
 
 Below it will be shown an example of what you can do using the supervisor and some basics on how to code it
 
-          SUPERVISOR EXAMPLE
+SUPERVISOR EXAMPLE
           
 #Imports the supervisor API
 
