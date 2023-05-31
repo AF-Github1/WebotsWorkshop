@@ -74,13 +74,6 @@ Afterwards give it a name and tick the box for 'Add a rectangle arena'. This is 
 
 ![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/e81a4e44-07ff-4d9f-b08a-5624d7d811bd)
 
-To note:
-
-Some older videos and posts adressing how Webots work are based on older versions. More recent versions put the controller wizard within the file tab, so if you are not finding the controller wizard tab, it's because you are in a more recent version of Webots and must instead create a new controller through the file tab.
-
-Webots expects files to follow certain conventions for controllers if you are adding the files manually and not through the new controller option in the Webots interface.
-Please look at the last section in this page of the documentation for the naming/directory convention.
-https://cyberbotics.com/doc/guide/the-standard-file-hierarchy-of-a-project
 
           ADDING A ROBOT
           
@@ -120,6 +113,15 @@ Now that we have our controller we need to go to the controller children node of
 Now to the right of your screen you should now see your controller text file that should look like this
 
 ![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/19437f15-0621-42e1-93a3-53165b4f92bf)
+
+To note:
+
+Some older videos and posts adressing how Webots work are based on older versions. More recent versions put the controller wizard within the file tab, so if you are not finding the controller wizard tab, it's because you are in a more recent version of Webots and must instead create a new controller through the file tab.
+
+Webots expects files to follow certain conventions for controllers if you are adding the files manually and not through the new controller option in the Webots interface.
+Please look at the last section in this page of the documentation for the naming/directory convention.
+https://cyberbotics.com/doc/guide/the-standard-file-hierarchy-of-a-project
+
 
           CONTROLLER BASICS
 
