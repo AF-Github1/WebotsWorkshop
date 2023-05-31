@@ -415,6 +415,11 @@ This robot node does not correspond to an actual robot running in the simulation
 
 We then create a new controller. There is nothing different in the process of creating this controller, you can create it exactly like when we created our first. The contents though, will be very different.
 
+Finally we change the the value of supervisor in our new robot node to TRUE
+
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/2bd5c61e-4eff-47da-952f-9772cd12dcd8)
+
+Only the node that we use for the supervisor should be declared as TRUE and nothing else. 
 
           SUPERVISOR EXAMPLE
           
@@ -427,39 +432,41 @@ TIME_STEP = 32
 #In here we declare the node as a supervisor node instead of a robot node
 robot = Supervisor()
 
-
    --------------------------------------------------------
 
 The robot.getFromDef('DEF') function is how you call a node.
 Every object and robot can have their DEF value modified, which can be different from the name. By default this field is empty so as you create objects to call through the supervisor you should fill this field with the strings you will use.
 
 ![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/122e2c7d-fd23-46aa-95c9-d98c3225c963)
+   --------------------------------------------------------
 
-#Busca a definição do robô
+#As explained before, this is how we call the node
 epuck = robot.getFromDef('epuck')
-# Refere-se à posição do robô
+#This gets the value for the translation field of the epuck robot (the position)
 translation_field = epuck.getField('translation')
 
-
-# Busca o que estiver contido no root node
+#This calls the root node, the world file, and associates it with a variable
 root_node = robot.getRoot()
 
-# Busca o que estiver contido nos children nodes
+#This gets the children node values for the root node
 children_field = root_node.getField('children')
 
-—----
+   --------------------------------------------------------
 
-Importar objectos através do supervisor.
+Importing objects through the supervisor
 
-Além de controlar outros nodos e posições, o supervisor pode chamar e criar novos nodos.
+Any new node you create through the supervisor must first be imported through the IMPORTABLE EXTERPROTO interface
 
-Contudo estes nodos que podem ser chamados devem primeiro ser declarados em Importable Externproto. 
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/6da3ab86-37c0-4f45-af4b-cceca87c58d5)
 
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/d26167ff-abf6-440e-9a6b-02a613f210c9)
 
-Essencialmente clica-se em importable externproto e escolhe-se o que se vai importar. Neste caso está-se a importar uma ball e um E-puck.
-—------
+Each object can only be called once, but can each be called multiple times.
 
-#Mesmo exemplo que o tutorial em que chamo uma bola, defino uma bola, a sua posição e #algumas variáveis associadas
+--------------------------------------------------------
+
+#In our case we will import a ball and a couple of different robots.
+
 
 children_field.importMFNodeFromString(-1, 'DEF BALL Ball { translation 0 1 1 }')
 ball_node = robot.getFromDef('BALL')
@@ -467,22 +474,22 @@ color_field = ball_node.getField('color')
 
 
 
-#Dentro de este loop introduzir um contador baseado no TIME_STEP que regista a posição do robô, retira um robô, importa outro robô e cria uma bola, além de indicar a posição da bola e mudar a cor da bola quando estiver perto da superfície
+#We create a loop with a counter so we can better control what happens in the simulation
 
 i = 0
 while robot.step(TIME_STEP) != -1:
 
   if (i == 0):
-    # Definição de posição
+    #This defines a new position for the translation field, changing the position
     new_value = [2.5, 0, 0]
     translation_field.setSFVec3f(new_value)
-    # Remove-se instância de robô
+    #This removes the e-puck we manually added to the world
   if i == 10:
       epuck.remove()
-   # Importa-se robô
+   #This imports a new e-puck from the IMPORTABLE EXTERPROTO table. What we want to import is called through the name it shows on the table. The name of e-puck in the table is 'E-puck' so that is the string we will use 
   if i == 20:
     children_field.importMFNodeFromString(-1, 'E-puck { }')
-   # 
+   #
   position = ball_node.getPosition()
   print('Ball position: %f %f %f\n' %(position[0], position[1], position[2]))
 
