@@ -1,0 +1,115 @@
+from controller import Robot, DistanceSensor, Motor, Camera
+
+# Tempo em ms que passa para ocorrer um momento na simulação
+TIME_STEP = 32
+MAX_SPEED = 6.28
+
+# Cria a instância Robot, declarando este nodo como um robô
+robot = Robot()
+# Inicializa os sensores. Contagem em python começa no 0.
+ps = []
+psNames = [
+    'ps0', 'ps1', 'ps2', 'ps3',
+    'ps4', 'ps5', 'ps6', 'ps7'
+]
+
+# Chama os sensores, associa-lhes a eles o valor de TIME_STEP, faz com que obtenham
+# informação a cada timestep
+
+for i in range(8):
+    ps.append(robot.getDevice(psNames[i]))
+    ps[i].enable(TIME_STEP)
+    
+  
+# Activação dos motores do robô
+leftMotor = robot.getDevice('left wheel motor')
+rightMotor = robot.getDevice('right wheel motor')
+
+
+leftMotor.setPosition(float('inf'))
+rightMotor.setPosition(float('inf'))
+leftMotor.setVelocity(0.0)
+rightMotor.setVelocity(0.0)
+
+# Activação camera
+       
+#camera = robot.getDevice('camera')
+#camera.enable(TIME_STEP) 
+
+# Activação sensores proximidade
+for i in range(8):
+    ps.append(robot.getDevice(psNames[i]))
+    ps[i].enable(TIME_STEP)
+
+    
+# Activação GPS
+#gps = robot.getGPS('gps')
+#gps.enable(TIME_STEP)
+
+print('Non default controller running')
+
+# Ciclo infinito. Ocorre até uma condição de terminar o loop ocorra
+while robot.step(TIME_STEP) != -1:
+
+    # Isto lê o que os sensores detectam
+    psValues = []
+    for i in range(8):
+        psValues.append(ps[i].getValue())
+       
+  #GPS loop
+ 
+  #  gps_value = gps.getValues()
+  #  print(gps_value)   
+  #  msg = "GPS test- "
+  #  for each_val in gps_value:
+  #      msg += " {0:0.2f}".format(each_val)
+  #  print(msg)
+    
+    right_obstacle = psValues[0] > 80.0 or psValues[1] > 80.0 or psValues[2] > 80.0
+    left_obstacle = psValues[5] > 80.0 or psValues[6] > 80.0 or psValues[7] > 80.0
+
+
+    # Isto inicia os motores na velocidade máxima definida anteriormente
+    leftSpeed  = MAX_SPEED
+    rightSpeed = MAX_SPEED
+    # Isto determina a ação a realizar caso detecte um obstáculo
+    if left_obstacle:
+        # Virar para a direira
+        leftSpeed  = 0.5 * MAX_SPEED
+        rightSpeed = -0.5 * MAX_SPEED
+    elif right_obstacle:
+        # Virar para a esquerda
+        leftSpeed  = -0.5 * MAX_SPEED
+        rightSpeed = 0.5 * MAX_SPEED
+
+        
+    # write actuators inputs
+    leftMotor.setVelocity(leftSpeed)
+    rightMotor.setVelocity(rightSpeed)
+    
+     
+     
+    # loop de distinguir cores
+ #   for x in range(0,camera.getWidth()):
+ #       for y in range(0,camera.getHeight()):
+ #           image = camera.getImageArray()
+
+ #           robot.step(TIME_STEP)
+ #           red = image[x][y][0]
+ #           green = image[x][y][1]
+ #           blue = image[x][y][2]
+            
+ #           if red > green and red > blue:
+ #               for j in range(8):
+ #                   robot.step(TIME_STEP)
+ #                   print('red')
+ #           if green > red and green > blue:
+ #              for j in range(8):
+ #                  robot.step(TIME_STEP)
+ #                  print('green')   
+ #           if blue > red and blue > green:
+ #              for j in range(8):
+ #                  robot.step(TIME_STEP)
+ #                  print('blue')
+ #           break
+ #       break
