@@ -461,7 +461,7 @@ Finally we change the the value of supervisor in our new robot node to TRUE
 
 ![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/2bd5c61e-4eff-47da-952f-9772cd12dcd8)
 
-Only the node that we use for the supervisor should be declared as TRUE and nothing else. 
+Only the node that we use for the supervisor should be declared as the supervisor and nothing else. 
 
 Below it will be shown an example of what you can do using the supervisor and some basics on how to code it
 
