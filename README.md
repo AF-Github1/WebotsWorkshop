@@ -1,26 +1,23 @@
-WebotsWorkshop
+Webots Workshop
 
 This repository contains the instructions and the code for the Webots workshops done in 31/05/2023 and 01/06/2023 within the context of AZORESBOT2023.
+
+https://azoresbot2023.uac.pt/
 
 It is meant to serve as a supporting learning document.
 
 In the case that someone that already has significant experience with Webots comes here, this repository will be mostly useless, as this is only meant as an introduction to the Webots interface and some of the specific functions that Webots uses.
 
-
-          WHY USE WEBOTS
-          
-Practicality and reduction of expenses. As of the writing of this document the cheapest variation of the physical e-puck robot used in this tutorial is around 850 euros. 
-This is an amount of money that not just anyone can afford to spend in a robot. But Webots is free. Anyone that can run Webots can use Webots.
-
-And in the context of school/university learning, this simulator also enables students to not have to depend on hardware provided by the institution in order to continue their learning. They do not need to reserve a timeslot for them to use a robot, they do not need to take turns bringing it home, they can start the work within the classroom and continue it at home while working on the exact same world file through the Webots simulator.
-
           INSTALLATION
 
-WEBOTS [https://cyberbotics.com](https://www.cyberbotics.com/) 
+WEBOTS 
+
+[https://cyberbotics.com](https://www.cyberbotics.com/) 
 
 Since this tutorial will be in python, it will also be necessary to install python.
 
 Python Windows
+
 https://www.python.org/downloads/windows/
 
 **Path instructions**
@@ -110,7 +107,7 @@ At any time when you are fiddling around in Webots, if you have any doubts on ho
 
           MAKING A CONTROLLER
          
-Now that we have our world file and our robot ready it is time to program. You now want to create a new controller. By going to File>New>New Robot Controller
+Now that we have our world file and our robot ready it is time to program. You now want to create a new controller. Go to File>New>New Robot Controller
 
 https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/615c33c4-8dd0-4904-8df9-6a153d87c950
 
@@ -210,9 +207,11 @@ Using the same button as we used before to add a new object, look up GPS in the 
 --------------------------------------------------------
 
 #This starts the logic loop for our robot
+
 while robot.step(TIME_STEP) != -1:
 
     # This creates a list to register the values obtained from the proximity sensors
+    
     psValues = []
     for i in range(8):
         psValues.append(ps[i].getValue())
@@ -227,6 +226,7 @@ while robot.step(TIME_STEP) != -1:
     print(msg)
     
   #This is the logic for the obstacle detection. Whenever the appropriate sensors detect they are within a given distance of an obstacle, depending on which sensors detect it we either define right_obstacle or left_obstacle as true.
+  
     right_obstacle = psValues[0] > 80.0 or psValues[1] > 80.0 or psValues[2] > 80.0
     left_obstacle = psValues[5] > 80.0 or psValues[6] > 80.0 or psValues[7] > 80.0
 
@@ -403,6 +403,8 @@ while robot.step(TIME_STEP) != -1:
     
           SUPERVISOR
 
+https://cyberbotics.com/doc/reference/supervisor
+
 This is a special type of node that serves as a sort of master for the simulation. It can spawn or despawn robots and objects, changes parameters, stop or restart the simulation and so on. What it can't do is get internal values from components of other robots, like camera images.
 
 Any robot can be a supervisor, although it is better to use a dedicated robot node for it
@@ -421,15 +423,20 @@ Finally we change the the value of supervisor in our new robot node to TRUE
 
 Only the node that we use for the supervisor should be declared as TRUE and nothing else. 
 
+Below it will be shown an example of what you can do using the supervisor and some basics on how to code it
+
           SUPERVISOR EXAMPLE
           
 #Imports the supervisor API
+
 from controller import Supervisor
 
 #Declaring timestep value
+
 TIME_STEP = 32
 
 #In here we declare the node as a supervisor node instead of a robot node
+
 robot = Supervisor()
 
    --------------------------------------------------------
@@ -441,14 +448,19 @@ Every object and robot can have their DEF value modified, which can be different
    --------------------------------------------------------
 
 #As explained before, this is how we call the node
+
 epuck = robot.getFromDef('epuck')
+
 #This gets the value for the translation field of the epuck robot (the position)
+
 translation_field = epuck.getField('translation')
 
 #This calls the root node, the world file, and associates it with a variable
+
 root_node = robot.getRoot()
 
 #This gets the children node values for the root node
+
 children_field = root_node.getField('children')
 
    --------------------------------------------------------
@@ -467,9 +479,14 @@ Each object can only be called once, but can each be called multiple times.
 
 #In our case we will import a ball and a couple of different robots.
 
-
 children_field.importMFNodeFromString(-1, 'DEF BALL Ball { translation 0 1 1 }')
+
+#This imports a ball node that we added through IMPORTABLE EXTERNPROTO
+
 ball_node = robot.getFromDef('BALL')
+
+#Gets the color value for the ball
+
 color_field = ball_node.getField('color')
 
 
@@ -480,21 +497,39 @@ i = 0
 while robot.step(TIME_STEP) != -1:
 
   if (i == 0):
+  
     #This defines a new position for the translation field, changing the position
+    
     new_value = [2.5, 0, 0]
+    
     translation_field.setSFVec3f(new_value)
+    
     #This removes the e-puck we manually added to the world
+    
   if i == 10:
+  
       epuck.remove()
-   #This imports a new e-puck from the IMPORTABLE EXTERPROTO table. What we want to import is called through the name it shows on the table. The name of e-puck in the table is 'E-puck' so that is the string we will use 
+      
+   #This imports a new e-puck from the IMPORTABLE EXTERPROTO table. What we want to import is called through the name it shows on the table. The name of e-puck in the table is 'E-puck' so that is the string we will use
+   
   if i == 20:
+  
     children_field.importMFNodeFromString(-1, 'E-puck { }')
-   #
+    
+  #This saves the translation value of the ball node
+  
   position = ball_node.getPosition()
+  
+  #And then we print out each of the xyz position values to the console
+  
   print('Ball position: %f %f %f\n' %(position[0], position[1], position[2]))
+  
+  #When the ball goes below a certain z value, we change its colour
 
   if position[2] < 0.2:
+  
     red_color = [1, 0, 0]
+    
     color_field.setSFColor(red_color)
 
   i += 1
