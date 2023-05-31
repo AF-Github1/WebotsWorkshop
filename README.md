@@ -317,6 +317,9 @@ while robot.step(TIME_STEP) != -1:
             break
         break
     
+    
+    
+  
           FULL UNCOMMENTED CODE 
     
 from controller import Robot, DistanceSensor, Motor, Camera, LED
