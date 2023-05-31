@@ -239,11 +239,11 @@ while robot.step(TIME_STEP) != -1:
     leftSpeed  = MAX_SPEED
     rightSpeed = MAX_SPEED
     if left_obstacle:
-        # Virar para a direira
+        # Turns right
         leftSpeed  = 0.5 * MAX_SPEED
         rightSpeed = -0.5 * MAX_SPEED
     elif right_obstacle:
-        # Virar para a esquerda
+        # Turns left
         leftSpeed  = -0.5 * MAX_SPEED
         rightSpeed = 0.5 * MAX_SPEED
         
@@ -269,7 +269,112 @@ while robot.step(TIME_STEP) != -1:
             robot.step(TIME_STEP)
   #This part stores the RGBA values of the pixels within a variable. In image[x][y][0], the x and y correspond to the coordinates of the pixels and the [0] corresponds to R in RGBA (Red). As such, 1 corresponds to green, 2 to blue and not used in this code, 3 corresponds to Alpha.
   #It compares the RGB values in the image and prints out the appropriate colour for whichever type is more numerous.
+  #Whenever it is detecting a color it blinks its LEDS, with led[j].set(1) activating the LED and led[j].set(0) turning them off again
   
+            red = image[x][y][0]
+            green = image[x][y][1]
+            blue = image[x][y][2]
+            
+            if red > green and red > blue:
+                for j in range(8):
+                    led[j].set(1)
+                    robot.step(TIME_STEP)
+                    led[j].set(0)
+                    print('red')
+            if green > red and green > blue:
+               for j in range(8):
+                   led[j].set(1)
+                   robot.step(TIME_STEP)
+                   led[j].set(0)    
+                   print('green')   
+            if blue > red and blue > green:
+               for j in range(8):
+                   led[j].set(1)
+                   robot.step(TIME_STEP)
+                   led[j].set(0) 
+                   print('blue')
+            break
+        break
+    
+          FULL UNCOMMENTED CODE 
+    
+from controller import Robot, DistanceSensor, Motor, Camera, LED
+
+TIME_STEP = 32
+MAX_SPEED = 6.28
+
+robot = Robot()
+ps = []
+psNames = [
+    'ps0', 'ps1', 'ps2', 'ps3',
+    'ps4', 'ps5', 'ps6', 'ps7'
+]
+
+for i in range(8):
+    ps.append(robot.getDevice(psNames[i]))
+    ps[i].enable(TIME_STEP)
+    
+    
+led = []
+ledNames = [
+    'led0', 'led1', 'led2', 'led3',
+    'led4', 'led5', 'led6', 'led7'
+]
+
+for j in range(8):
+    led.append(robot.getDevice(ledNames[j]))
+    
+  
+leftMotor = robot.getDevice('left wheel motor')
+rightMotor = robot.getDevice('right wheel motor')
+
+leftMotor.setPosition(float('inf'))
+rightMotor.setPosition(float('inf'))
+leftMotor.setVelocity(0.0)
+rightMotor.setVelocity(0.0)
+       
+camera = robot.getDevice('camera')
+camera.enable(TIME_STEP) 
+  
+gps = robot.getGPS('gps')
+gps.enable(TIME_STEP)
+
+while robot.step(TIME_STEP) != -1:
+
+    psValues = []
+    for i in range(8):
+        psValues.append(ps[i].getValue())
+       
+ 
+    gps_value = gps.getValues()
+    print(gps_value)   
+    msg = "GPS test- "
+    for each_val in gps_value:
+        msg += " {0:0.2f}".format(each_val)
+    print(msg)
+    
+    right_obstacle = psValues[0] > 80.0 or psValues[1] > 80.0 or psValues[2] > 80.0
+    left_obstacle = psValues[5] > 80.0 or psValues[6] > 80.0 or psValues[7] > 80.0
+
+  
+    leftSpeed  = MAX_SPEED
+    rightSpeed = MAX_SPEED
+    if left_obstacle:
+        leftSpeed  = 0.5 * MAX_SPEED
+        rightSpeed = -0.5 * MAX_SPEED
+    elif right_obstacle:
+        leftSpeed  = -0.5 * MAX_SPEED
+        rightSpeed = 0.5 * MAX_SPEED
+        
+    leftMotor.setVelocity(leftSpeed)
+    rightMotor.setVelocity(rightSpeed)
+  
+    for x in range(0,camera.getWidth()):
+        for y in range(0,camera.getHeight()):
+            image = camera.getImageArray()
+
+            robot.step(TIME_STEP)
+
             red = image[x][y][0]
             green = image[x][y][1]
             blue = image[x][y][2]
@@ -300,11 +405,93 @@ while robot.step(TIME_STEP) != -1:
 
 This is a special type of node that serves as a sort of master for the simulation. It can spawn or despawn robots and objects, changes parameters, stop or restart the simulation and so on. What it can't do is get internal values from components of other robots, like camera images.
 
-Any robot can be a supervisor, although it is better to use a dedicated robot node for it........
-............
+Any robot can be a supervisor, although it is better to use a dedicated robot node for it
 
-...........
-.............
+Add a dedicated robot node to the world
+
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/5fe9e3cf-324f-4357-8cb3-051a928820e0)
+
+This robot node does not correspond to an actual robot running in the simulation, it's just a node that can run the code for a controller. In this case since we will be converting a node into a supervisor node, there's no need to have another object in our arena.
+
+We then create a new controller. There is nothing different in the process of creating this controller, you can create it exactly like when we created our first. The contents though, will be very different.
+
+
+          SUPERVISOR EXAMPLE
+          
+#Imports the supervisor API
+from controller import Supervisor
+
+#Declaring timestep value
+TIME_STEP = 32
+
+#In here we declare the node as a supervisor node instead of a robot node
+robot = Supervisor()
+
+
+   --------------------------------------------------------
+
+The robot.getFromDef('DEF') function is how you call a node.
+Every object and robot can have their DEF value modified, which can be different from the name. By default this field is empty so as you create objects to call through the supervisor you should fill this field with the strings you will use.
+
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/122e2c7d-fd23-46aa-95c9-d98c3225c963)
+
+#Busca a definição do robô
+epuck = robot.getFromDef('epuck')
+# Refere-se à posição do robô
+translation_field = epuck.getField('translation')
+
+
+# Busca o que estiver contido no root node
+root_node = robot.getRoot()
+
+# Busca o que estiver contido nos children nodes
+children_field = root_node.getField('children')
+
+—----
+
+Importar objectos através do supervisor.
+
+Além de controlar outros nodos e posições, o supervisor pode chamar e criar novos nodos.
+
+Contudo estes nodos que podem ser chamados devem primeiro ser declarados em Importable Externproto. 
+
+
+Essencialmente clica-se em importable externproto e escolhe-se o que se vai importar. Neste caso está-se a importar uma ball e um E-puck.
+—------
+
+#Mesmo exemplo que o tutorial em que chamo uma bola, defino uma bola, a sua posição e #algumas variáveis associadas
+
+children_field.importMFNodeFromString(-1, 'DEF BALL Ball { translation 0 1 1 }')
+ball_node = robot.getFromDef('BALL')
+color_field = ball_node.getField('color')
+
+
+
+#Dentro de este loop introduzir um contador baseado no TIME_STEP que regista a posição do robô, retira um robô, importa outro robô e cria uma bola, além de indicar a posição da bola e mudar a cor da bola quando estiver perto da superfície
+
+i = 0
+while robot.step(TIME_STEP) != -1:
+
+  if (i == 0):
+    # Definição de posição
+    new_value = [2.5, 0, 0]
+    translation_field.setSFVec3f(new_value)
+    # Remove-se instância de robô
+  if i == 10:
+      epuck.remove()
+   # Importa-se robô
+  if i == 20:
+    children_field.importMFNodeFromString(-1, 'E-puck { }')
+   # 
+  position = ball_node.getPosition()
+  print('Ball position: %f %f %f\n' %(position[0], position[1], position[2]))
+
+  if position[2] < 0.2:
+    red_color = [1, 0, 0]
+    color_field.setSFColor(red_color)
+
+  i += 1
+
 
 **Authors/Workshop Lecturers**
 
