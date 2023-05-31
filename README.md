@@ -8,6 +8,8 @@ It is meant to serve as a supporting learning document.
 
 In the case that someone that already has significant experience with Webots comes here, this repository will be mostly useless, as this is only meant as an introduction to the Webots interface and some of the specific functions that Webots uses.
 
+--------------------------------------------------------
+
 INSTALLATION
 
 Webots
@@ -38,6 +40,8 @@ Now you must go to environment variable and define the path for Python
 
 The path must be the location for the Python executable and it will change depending on where you installed Python. After the path has been correctly configured you will now be able to write Python code for your Webots controller
 
+--------------------------------------------------------
+
 GLOSSARY
 
 **NODE**
@@ -64,6 +68,8 @@ It is the work environment in which you add and modify nodes. The world file wil
 
 It is a text file that contains the code you write. It is not contained within the world file, it is a separate file. 
 
+--------------------------------------------------------
+
 MAKING A NEW WORLD
 
 In the top left side of the interface go to File>New>New World File
@@ -74,6 +80,7 @@ Afterwards give it a name and tick the box for 'Add a rectangle arena'. This is 
 
 ![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/e81a4e44-07ff-4d9f-b08a-5624d7d811bd)
 
+--------------------------------------------------------
 
 ADDING A ROBOT
           
@@ -87,6 +94,8 @@ Then you can use the find text box to look up what you want. In this case we nee
 
 Then it's just a matter of clicking 'Add' and the robot should spawn in your arena.
 
+--------------------------------------------------------
+
 E-PUCK SPECIFICS
 
 For the sake of this demonstration the GCtronic's e-puck will be used. One thing that will mentioned a few times over this document is the Webots documentation that can specify certain aspects of Webots and its robots at a much greater detail than one could ever do here. As such any explanation on how a robot works will be supported with a link to the relevant documentation 
@@ -97,6 +106,8 @@ For the sake of this demonstration the GCtronic's e-puck will be used. One thing
 These particular pages includes the default parts for the e-puck, their names, and where they are located on the robot. For example, it will show where the camera is positioned and what string you should use in your code to call the camera. The same for any other part of the robot like its LEDS, its sensors and a slew of other technical details. 
 
 At any time when you are fiddling around in Webots, if you have any doubts on how a specific part of the robot works, consult the documentation.
+
+--------------------------------------------------------
 
 MAKING A CONTROLLER
          
@@ -122,6 +133,7 @@ Webots expects files to follow certain conventions for controllers if you are ad
 Please look at the last section in this page of the documentation for the naming/directory convention.
 https://cyberbotics.com/doc/guide/the-standard-file-hierarchy-of-a-project
 
+--------------------------------------------------------
 
 CONTROLLER BASICS
 
@@ -134,6 +146,8 @@ By default the basicTimeStep is 32
 If you have different timesteps for different parts/logic loops of the robot, remember that the timestep should be a multiple of the first timestep that you created initially. If you create a new value it should be always be in multiples. So if your first timestep you declared is 16, your other values should be 32,64,128 and so on. This is so that every part of the simulation is in sync. If the simulation stops being in sync some issues might crop up like certain objects becoming non functional/not function as they should.
 
 Another important point is how you call each part of the robot. They may need to be imported and they follow certain conventions in order to be activated. This will be explained in greater detail in the coding section below.
+
+--------------------------------------------------------
 
 CODING YOUR FIRST ROBOT
  
@@ -319,7 +333,7 @@ while robot.step(TIME_STEP) != -1:
     
     
     
-  
+--------------------------------------------------------  
     
 FULL UNCOMMENTED CODE
     
@@ -424,7 +438,8 @@ while robot.step(TIME_STEP) != -1:
                    print('blue')
             break
         break
-    
+ 
+ --------------------------------------------------------
     
 SUPERVISOR
 
@@ -449,6 +464,8 @@ Finally we change the the value of supervisor in our new robot node to TRUE
 Only the node that we use for the supervisor should be declared as TRUE and nothing else. 
 
 Below it will be shown an example of what you can do using the supervisor and some basics on how to code it
+
+--------------------------------------------------------
 
 SUPERVISOR EXAMPLE
           
