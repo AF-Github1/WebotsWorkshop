@@ -11,7 +11,7 @@ In the case that someone that already has significant experience with Webots com
 
 WARNING
 
-CURRENTLY IMAGES/VIDEOS ARE BROKEN
+CURRENTLY IMAGES/VIDEOS LINKS ARE BROKEN
 
 
 --------------------------------------------------------
