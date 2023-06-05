@@ -39,11 +39,11 @@ https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/84ff14e0-f41c-4416
 
 Type python in the Python Command section
 
-![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/25416c7b-e6aa-4440-adf4-0abb1b868590)
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/7c97bfcd-8949-42fc-b79e-e736c5ace261)
 
 Now you must go to environment variable and define the path for Python
 
-![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/bcbfb81b-4bfb-45db-846c-748dbfcb1989)
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/a1d292ea-d18e-4c93-8c81-660ca85b6ecf)
 
 The path must be the location for the Python executable and it will change depending on where you installed Python. After the path has been correctly configured you will now be able to write Python code for your Webots controller
 
@@ -81,11 +81,12 @@ MAKING A NEW WORLD
 
 In the top left side of the interface go to File>New>New World File
 
-https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/3f537982-cecf-418d-8d71-23879f719dd5
+https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/4f87ddca-5ee8-4a4d-8d1d-f7a106e3aa8b
+
+If it warns you it can't create a new world due to not being able to change the files in its current location, create a new project directory instead, which will be the option above. Creating a new project directory will also create a new world file 
 
 Afterwards give it a name and tick the box for 'Add a rectangle arena'. This is not enabled by default. It's possible to later add the arena but it's quicker this way
 
-![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/e81a4e44-07ff-4d9f-b08a-5624d7d811bd)
 
 --------------------------------------------------------
 
@@ -93,7 +94,7 @@ ADDING A ROBOT
           
 At this stage you should have already created a world and can now add a robot and any other object you so desire. To add any object select the + icon below the top left options.
 
-![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/280c61f3-ddf8-4272-873d-f5591dd19635)
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/86b27873-1fe1-4905-b55c-208de1066e0c)
 
 Then you can use the find text box to look up what you want. In this case we need an e-puck
 
