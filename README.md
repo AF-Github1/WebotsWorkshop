@@ -9,10 +9,6 @@ It is meant to serve as a supporting learning document.
 In the case that someone that already has significant experience with Webots comes here, this repository will be mostly useless, as this is only meant as an introduction to the Webots interface and some of the specific functions that Webots uses.
 
 
-WARNING
-
-CURRENTLY IMAGES/VIDEOS LINKS ARE BROKEN
-
 
 --------------------------------------------------------
 
