@@ -585,11 +585,11 @@ while robot.step(TIME_STEP) != -1:
 
 **Authors/Workshop Lecturers**
 
-António José Lopes de Freitas
+António Freitas
 
 Carlos Cabral
 
-João Lopes de Freitas
+João Freitas
 
 
 
