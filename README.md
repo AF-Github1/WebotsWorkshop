@@ -34,7 +34,8 @@ After having both Python and Webots installed you may have to manually tell Webo
 
 Go to Tools>Preferences
 
-https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/30c83e1f-39d3-4fb7-992d-19927eda32c4
+
+https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/84ff14e0-f41c-4416-989a-db59a8965051
 
 Type python in the Python Command section
 
