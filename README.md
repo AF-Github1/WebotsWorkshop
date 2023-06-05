@@ -272,6 +272,7 @@ while robot.step(TIME_STEP) != -1:
 
 
   #Whenever the value of the right/left obstacle is true we change the speed for each of the motors. As such, the robot will rotate either to the left or to the right until the sensors stop detecting obstacles
+  
   #To note that this simple code does not prevent a obstacle detection loop, so if the robot manages to get a situation where it detects obstacles in both sides it will get stuck until manually removed from the position.
   
 
