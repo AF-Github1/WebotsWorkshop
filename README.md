@@ -125,7 +125,7 @@ Now that we have our controller we need to go to the controller children node of
 
 Now to the right of your screen you should now see your controller text file that should look like this
 
-![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/19437f15-0621-42e1-93a3-53165b4f92bf)
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/9a086fce-92a0-4999-844f-21827cd3762d)
 
 To note:
 
