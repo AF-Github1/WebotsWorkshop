@@ -83,6 +83,8 @@ If it warns you it can't create a new world due to not being able to change the 
 
 Afterwards give it a name and tick the box for 'Add a rectangle arena'. This is not enabled by default. It's possible to later add the arena but it's quicker this way
 
+If there some parts of the interface missing, use CTRL-J to restore to the default viewing mode. Otherwise you can also do this through the Tools option on the top left of the application to choose what you want enabled or not
+
 
 --------------------------------------------------------
 
