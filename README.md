@@ -98,7 +98,7 @@ At this stage you should have already created a world and can now add a robot an
 
 Then you can use the find text box to look up what you want. In this case we need an e-puck
 
-![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/ac8c67fe-af11-453b-be7e-c397ebbaeb89)
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/198087fd-ac3c-4857-91c5-7892024f52ac)
 
 Then it's just a matter of clicking 'Add' and the robot should spawn in your arena.
 
@@ -121,13 +121,11 @@ MAKING A CONTROLLER
          
 Now that we have our world file and our robot ready it is time to program. You now want to create a new controller. Go to File>New>New Robot Controller
 
-https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/615c33c4-8dd0-4904-8df9-6a153d87c950
-
 Select the coding language you will code it on, for the purposes of this tutorial this will be python, select a IDE, which should be Webots and finally give it a name, which can be whatever you like.
 
 Now that we have our controller we need to go to the controller children node of the e-puck in the scene tree. There will be a controller selected by default. Change it to the new controller you just created.
 
-![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/cae170db-e742-48e9-a002-ff8b07fa9806)
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/641d8075-f08f-4bd7-a19a-9f6b85881195)
 
 Now to the right of your screen you should now see your controller text file that should look like this
 
@@ -237,15 +235,16 @@ gps = robot.getGPS('gps')
 
 gps.enable(TIME_STEP)
 
-![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/35aba30f-e09f-4fb0-8a28-4f6be1963e85)
 
 --------------------------------------------------------
 
 By default the e-puck robot does not come with the gps module. As such it is necessary to add the gps through the scene tree. Select the turret slot in the scene tree
 
-![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/9e3d8aa4-f6ba-4fba-add3-3848f3af4caa)
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/1feb40ee-9e53-4cd4-a19d-b027dede8145)
 
 Using the same button as we used before to add a new object, look up GPS in the search box and add it to the robot.
+
+It is possible to add the gps in other children nodes of the e-puck. It is also possible to add multiple gps nodes, but they will have to receive different names, as multiple devices with the same name will make it impossible for the code to run as it can't differentiate between them.
 
 --------------------------------------------------------
 
@@ -277,7 +276,9 @@ while robot.step(TIME_STEP) != -1:
   #Whenever the value of the right/left obstacle is true we change the speed for each of the motors. As such, the robot will rotate either to the left or to the right until the sensors stop detecting obstacles
   #To note that this simple code does not prevent a obstacle detection loop, so if the robot manages to get a situation where it detects obstacles in both sides it will get stuck until manually removed from the position.
   
-  https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/4fa13e96-1e7d-4dce-b171-fd9f04d3fafe
+
+https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/2596926f-62a2-4fa2-950e-c91d3f084512
+
 
     leftSpeed  = MAX_SPEED
     rightSpeed = MAX_SPEED
@@ -459,15 +460,15 @@ Any robot can be a supervisor, although it is better to use a dedicated robot no
 
 Add a dedicated robot node to the world
 
-![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/5fe9e3cf-324f-4357-8cb3-051a928820e0)
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/ceac3cfd-64b2-49a6-bebf-b70846fb7960)
 
 This robot node does not correspond to an actual robot running in the simulation, it's just a node that can run the code for a controller. In this case since we will be converting a node into a supervisor node, there's no need to have another object in our arena.
 
 We then create a new controller. There is nothing different in the process of creating this controller, you can create it exactly like when we created our first. The contents though, will be very different.
 
-Finally we change the the value of supervisor in our new robot node to TRUE
+Finally we change the value of supervisor in our new robot node to TRUE
 
-![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/2bd5c61e-4eff-47da-952f-9772cd12dcd8)
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/b97563b5-dd63-4453-a0c5-fca970582dcf)
 
 Only the node that we use for the supervisor should be declared as the supervisor and nothing else. 
 
@@ -494,8 +495,9 @@ robot = Supervisor()
 The robot.getFromDef('DEF') function is how you call a node.
 Every object and robot can have their DEF value modified, which can be different from the name. By default this field is empty so as you create objects to call through the supervisor you should fill this field with the strings you will use.
 
-![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/122e2c7d-fd23-46aa-95c9-d98c3225c963)
-   --------------------------------------------------------
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/521f350e-98ea-4c48-af0d-196a6d055e35)
+
+--------------------------------------------------------
 
 #As explained before, this is how we call the node
 
@@ -519,9 +521,9 @@ Importing objects through the supervisor
 
 Any new node you create through the supervisor must first be imported through the IMPORTABLE EXTERPROTO interface
 
-![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/6da3ab86-37c0-4f45-af4b-cceca87c58d5)
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/fa21df1c-3ad8-4b87-af87-c1759cfff227)
 
-![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/d26167ff-abf6-440e-9a6b-02a613f210c9)
+![image](https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/eee9f17b-917a-49a6-844a-9e4e06fafef4)
 
 Each object can only be called once, but can each be called multiple times.
 
