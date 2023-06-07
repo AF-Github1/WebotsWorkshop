@@ -43,6 +43,10 @@ Now you must go to environment variable and define the path for Python
 
 The path must be the location for the Python executable and it will change depending on where you installed Python. After the path has been correctly configured you will now be able to write Python code for your Webots controller
 
+This solution was what worked in my case but may not work for everyone. Please refer to the Python instalation section of the documentation for other possible solutions
+
+https://cyberbotics.com/doc/guide/using-python#libraries
+
 --------------------------------------------------------
 
 GLOSSARY
@@ -61,7 +65,7 @@ All nodes within the hierarchy of a root node. Any object that is added to a wor
 
 **SCENE TREE**
 
-It's the visual representation for the entire node hierarchy and its the interface where the user can modify, create or delete nodes.
+It is the visual representation for the entire node hierarchy and its the interface where the user can modify, create or delete nodes.
 
 **WORLD**
 
@@ -83,7 +87,7 @@ If it warns you it can't create a new world due to not being able to change the 
 
 Afterwards give it a name and tick the box for 'Add a rectangle arena'. This is not enabled by default. It's possible to later add the arena but it's quicker this way
 
-If there some parts of the interface missing, use CTRL-J to restore to the default viewing mode. Otherwise you can also do this through the Tools option on the top left of the application to choose what you want enabled or not
+If there are parts of the interface missing, use CTRL-J to restore to the default viewing mode. Otherwise you can also do this through the Tools option on the top left of the application to choose what you want enabled or not
 
 
 --------------------------------------------------------
@@ -104,7 +108,7 @@ Then it's just a matter of clicking 'Add' and the robot should spawn in your are
 
 E-PUCK SPECIFICS
 
-For the sake of this demonstration the GCtronic's e-puck will be used. One thing that will mentioned a few times over this document is the Webots documentation that can specify certain aspects of Webots and its robots at a much greater detail than one could ever do here. As such any explanation on how a robot works will be supported with a link to the relevant documentation 
+For the sake of this demonstration the GCtronic's e-puck will be used. One thing that will mentioned a few times over this document is the Webots documentation that can specify certain aspects of Webots and its robots at a much greater detail than one could ever do here.
 
 [https://cyberbotics.com/doc/guide/epuck
 ](https://cyberbotics.com/doc/guide/epuck)
@@ -157,7 +161,7 @@ CODING YOUR FIRST ROBOT
  
 I will show some sample code along with the explanation of what it does. I will also show how to install certain modules. 
 
-**The full code without any comments will be put in a section below this one if you wish to copy it.
+**The full code without any of these comments will be put in a section below this one and in other files in this repository if you just wish to copy it.
 **
 
 #This line calls the modules of the robot used to code in this controller. 
@@ -311,7 +315,9 @@ https://github.com/AF-Github1/WebotsWorkshop/assets/133685290/2596926f-62a2-4fa2
 
             robot.step(TIME_STEP)
   #This part stores the RGBA values of the pixels within a variable. In image[x][y][0], the x and y correspond to the coordinates of the pixels and the [0] corresponds to R in RGBA (Red). As such, 1 corresponds to green, 2 to blue and not used in this code, 3 corresponds to Alpha.
+  
   #It compares the RGB values in the image and prints out the appropriate colour for whichever type is more numerous.
+  
   #Whenever it is detecting a color it blinks its LEDS, with led[j].set(1) activating the LED and led[j].set(0) turning them off again
   
             red = image[x][y][0]
@@ -575,7 +581,7 @@ while robot.step(TIME_STEP) != -1:
   
   print('Ball position: %f %f %f\n' %(position[0], position[1], position[2]))
   
-  #When the ball goes below a certain z value, we change its colour
+  #And finally when the ball goes below a certain z value, we change its colour
 
   if position[2] < 0.2:
   
@@ -584,6 +590,36 @@ while robot.step(TIME_STEP) != -1:
     color_field.setSFColor(red_color)
 
   i += 1
+
+--------------------------------------------------------
+
+After following this tutorial you should be able to easily navigate through the Webots interface and be able to easily create worlds,objects and controllers at will. If you wish to expand your knowledge on more features that Webots provides you will now need to use the documentation provided by Cyberoptics.
+
+I would recommend checking out a few of the other tutorials provided, some being uncessary as they  handle the same subjects that were aproached here
+
+https://cyberbotics.com/doc/guide/tutorials
+
+And a few miscellaneous points if you want to go even further with Webots
+
+**Webots has IDE integration**
+
+Webots can be used through an IDE like Pycharm in order to make use of its features
+
+https://cyberbotics.com/doc/guide/using-your-ide
+
+**Webots lets you create and import objects**
+
+Webots lets you import objects created outside of the application, like those made using 3D sofware like Blender
+
+https://github.com/cyberbotics/blender-webots-exporter
+
+**Webots lets you make your own robots**
+
+You can setup and customize your own robots and then code them like any other of the default robots
+
+https://cyberbotics.com/doc/guide/tutorial-6-4-wheels-robot
+
+
 
 
 **Authors/Workshop Lecturers**
