@@ -1,0 +1,63 @@
+from controller import Robot, DistanceSensor, Motor
+
+# Tempo que passa a cada instância
+TIME_STEP = 32
+# Variável de velocidade
+MAX_SPEED = 6.28
+
+# Declarar como robô
+robot = Robot()
+
+# Criação de lista dos nomes dos sensores
+ps = []
+psNames = [
+    'ps0', 'ps1', 'ps2', 'ps3',
+    'ps4', 'ps5', 'ps6', 'ps7'
+]
+
+
+# Activação dos sensores utilizando a lista anterior
+for i in range(8):
+    ps.append(robot.getDevice(psNames[i]))
+    ps[i].enable(TIME_STEP)
+      
+      
+# Activação de ambos os motores      
+leftMotor = robot.getDevice('left wheel motor')
+rightMotor = robot.getDevice('right wheel motor')
+leftMotor.setPosition(float('inf'))
+rightMotor.setPosition(float('inf'))
+# Meter os motores na velocidade inicial de 0
+leftMotor.setVelocity(0.0)
+rightMotor.setVelocity(0.0)
+
+# Imprime uma mensagem para verificar se estamos o correr o controlador correto
+print('Non default controller running')
+
+
+# Ciclo de lógica. Aqui o robô irá verificar a distância a obstáculos e virar para a direção contrária
+# do obstáculo detectado
+while robot.step(TIME_STEP) != -1:
+    # Isto adquire os valores dos sensores de proximidade
+    psValues = []
+    for i in range(8):
+        psValues.append(ps[i].getValue())
+    # Aqui verifica-se os valores dos sensores, e defini-se se existe obstáculo ou não.
+    right_obstacle = psValues[0] > 80.0 or psValues[1] > 80.0 or psValues[2] > 80.0
+    left_obstacle = psValues[5] > 80.0 or psValues[6] > 80.0 or psValues[7] > 80.0
+    # Aqui defino variáveis de velocidade para os motores
+    leftSpeed  = MAX_SPEED
+    rightSpeed = MAX_SPEED
+    
+    # Se um obstáculo for detectado à esquerda isto faz com que o robô gire sobre o próprio eixo para a direita
+    # até deixar de detectar um obstáculo. O inverso aplica-se para quando detecta um obstáculo à direita
+    if left_obstacle:
+        leftSpeed  = 0.5 * MAX_SPEED
+        rightSpeed = -0.5 * MAX_SPEED
+
+    elif right_obstacle:
+        leftSpeed  = -0.5 * MAX_SPEED
+        rightSpeed = 0.5 * MAX_SPEED
+    # Aqui aplica o valor actual de velocidade ao motores
+    leftMotor.setVelocity(leftSpeed)
+    rightMotor.setVelocity(rightSpeed)
